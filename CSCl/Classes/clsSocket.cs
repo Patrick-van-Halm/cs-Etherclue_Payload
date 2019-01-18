@@ -68,7 +68,10 @@ namespace Etherclue
 
         public string Receive()
         {
-            Thread.Sleep(200);
+            while(socket.Available <= 0)
+            {
+                Thread.Sleep(500);
+            }
             if(socket.Available > 0)
             {
                 byte[] buffer = new byte[4096];

