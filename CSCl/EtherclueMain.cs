@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -76,7 +76,7 @@ namespace Etherclue
                     Process p = new Process();
                     p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     p.StartInfo.FileName = "cmd.exe";
-                    p.StartInfo.Arguments = "/k " + cmd.GottenRequest().Substring(5);
+                    p.StartInfo.Arguments = "/k \"" + cmd.GottenRequest().Substring(5) + "\"";
                     p.Start();
                     break;
 
